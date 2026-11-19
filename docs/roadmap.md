@@ -1,30 +1,34 @@
 # Roadmap LevelCode
 
-## Phase 1 — Base officielle
+La priorité produit est désormais l'écosystème de création et d'extension : **la Phase 4 passe en premier**.
 
-- Initialiser le dépôt GitHub réel.
-- Créer la structure technique.
-- Préparer les fichiers d’architecture et de documentation.
-- Séparer clairement le produit de la démo.
+## Priorité 1 — Écosystème (anciennement Phase 4)
 
-## Phase 2 — Modules de base
+1. **LevelSkills** — créer, classer, exporter et réutiliser des compétences.
+2. **LevelDev** — préparer les spécifications de modules, Skills et connecteurs.
+3. **LevelConnect** — gérer les intégrations et leurs autorisations.
+4. **LevelImport** — importer et prévisualiser des données avant intégration.
+5. **LevelMCP** — référencer et connecter de manière sécurisée des serveurs/outils MCP.
+6. **LevelAPI** — documenter et exposer des endpoints avec authentification et quotas.
 
-- LevelMemory
-- LevelCoach
-- Levely AI abstraction
-- LevelStudio fondations
+## Priorité 2 — Fondations produit
 
-## Phase 3 — Intégrations
+- Authentification et profils.
+- Base de données et sauvegarde cloud.
+- Permissions, audit et gestion des secrets.
+- LevelMemory et LevelVerify.
 
-- LevelConnect
-- LevelImport
-- LevelMCP
-- LevelAPI
+## Priorité 3 — Intelligence et expérience
 
-## Phase 4 — Validation
+- LevelCoach avancé.
+- Levely AI et abstraction multi-fournisseurs.
+- LevelStudio avancé.
+- Orchestration des modules.
 
-- build local,
-- documentation,
-- review de dépendances,
-- tests ciblés,
-- vérification des variables d’environnement.
+## Validation continue
+
+À chaque livraison : build, tests ciblés, revue des dépendances, vérification des variables d'environnement, documentation et statut réel des fonctionnalités.
+
+## Règle de livraison
+
+Une interface de configuration locale n'est pas une intégration opérationnelle. Une connexion externe ne passe au statut opérationnel qu'après implémentation serveur, permissions, tests et validation.
