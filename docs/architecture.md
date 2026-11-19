@@ -1,77 +1,74 @@
 # Architecture LevelCode
 
-## Vue d’ensemble
+## Product direction
 
-LevelCode est conçu comme un écosystème modulaire permettant d’organiser la mémoire, les recommandations, les vérifications, les compétences, les intégrations et l’environnement de création.
+LevelCode is a modular workspace for organizing knowledge, AI workflows, reusable Skills and external integrations.
 
-Le projet ne vise pas à reproduire le site de démonstration, mais à structurer une base saine pour le produit.
+**Product rule:** LevelCoach recommends. The user decides. LevelCode executes.
 
-## Couches principales
+## Application layers
 
-### 1. Couche présentation
+1. **Presentation — Next.js App Router**
+   - Responsive web application.
+   - Public product pages and authenticated account area.
+   - Module routes remain independent UI surfaces.
 
-- Interface de marketing et vitrine.
-- Présentation des modules et des services.
-- Navigation claire et expérience responsive.
+2. **Identity — Supabase Auth**
+   - Email/password authentication to start.
+   - Server-side sessions stored in secure cookies through `@supabase/ssr`.
+   - The browser uses only the publishable key.
+   - Server routes validate identity with `auth.getUser()`.
 
-### 2. Couche produit
+3. **Data — Supabase Postgres**
+   - Shared database, module-owned tables.
+   - Every exposed table enables Row Level Security.
+   - User and workspace ownership is enforced in Postgres, not only in UI filters.
+   - JSONB settings are for flexible module configuration, not a substitute for typed core entities.
 
-- LevelMemory
-- LevelCoach
-- LevelVerify
-- LevelSkills
-- LevelMarket
-- LevelDev
-- LevelConnect
-- LevelImport
-- LevelMCP
-- LevelAPI
-- LevelStudio
+4. **Domain modules**
+   - LevelMemory, LevelCoach, LevelVerify.
+   - LevelSkills, LevelMarket, LevelDev, LevelStudio.
+   - LevelConnect, LevelImport, LevelMCP, LevelAPI.
+   - Levely AI as the central assistant layer.
 
-### 3. Couche IA
+5. **Integration services**
+   - External provider credentials stay server-side.
+   - Connectors require explicit scopes and user consent.
+   - MCP tools are registered and authorized before execution.
 
-Levely AI agit comme un assistant central et indépendant des fournisseurs de modèles. L’architecture doit permettre :
+## Shared data model — first foundation
 
-- sélection de fournisseur,
-- configuration de modèle,
-- gestion des permissions,
-- limites d’usage,
-- traitement des erreurs,
-- normalisation des réponses.
+- `profiles`: account profile linked to `auth.users`.
+- `workspaces`: shared work areas owned by an account.
+- `workspace_members`: membership and initial role.
+- `projects`: work items scoped to a workspace.
+- `module_preferences`: per-user module enablement and settings.
+- `audit_events`: append-only activity history for workspace actions.
 
-### 4. Couche intégration
+The SQL reference is in [supabase/schema.sql](../supabase/schema.sql). It is a reviewed schema blueprint, not yet a deployed migration.
 
-- APIs externes et services.
-- Connecteurs MCP.
-- Outils de données et d’import.
-- Intégration de services tiers avec configuration explicite.
+## Security boundaries
 
-## Statut réel des modules
+- Never put Supabase secret/service-role keys in browser variables.
+- Use the publishable key only with RLS enabled and least-privilege grants.
+- Every private row must have an ownership or membership policy.
+- Use `auth.getUser()` for server-side identity validation; do not authorize from unverified client state.
+- No service may execute external actions without explicit authorization.
+- Keep an audit record for sensitive workspace operations.
 
-Le dépôt doit refléter les véritables niveaux de maturité :
+## Current implementation status
 
-- LevelMemory : en conception.
-- LevelCoach : fondations à construire.
-- LevelVerify : planifié.
-- LevelSkills : planifié.
-- LevelMarket : planifié.
-- LevelDev : conceptuel.
-- LevelConnect : planifié.
-- LevelImport : planifié.
-- LevelMCP : architecture à préparer.
-- LevelAPI : structure à définir.
-- LevelStudio : fondations à construire.
-- Levely AI : abstraction de fournisseur à préparer.
+- Supabase browser and server client helpers: added.
+- Session refresh middleware: added.
+- Email/password sign-up and sign-in UI: added.
+- Auth callback and sign-out route: added.
+- Authenticated dashboard shell: added.
+- Shared database schema: drafted with RLS policies.
+- Live Supabase database: not connected or migrated yet.
+- Workspace creation/invitations and module data APIs: next implementation step.
 
-## Principe de conception
+## Deployment requirements
 
-« LevelCoach recommande. L’utilisateur décide. LevelCode exécute. »
+Set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` in local/Vercel environments. Configure the Auth Site URL and redirect URL to include the deployed domain and `/auth/callback`.
 
-Cela signifie que l’application doit toujours garder le contrôle utilisateur sur les préférences, les recommandations et les actions à exécuter.
-
-## Bonnes pratiques
-
-- Séparer les interfaces et les services.
-- Ne pas présenter une fonctionnalité comme finalisée sans intégration réelle.
-- Documenter chaque point de configuration.
-- Préserver l’évolutivité du produit.
+Do not mark auth or persistence as operational until a real account flow and RLS isolation test pass against the active LevelCode project.
