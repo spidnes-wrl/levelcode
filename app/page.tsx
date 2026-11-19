@@ -29,7 +29,7 @@ export default function Home() {
           <a href="/coach">LevelCoach</a>
           <a href="/market">LevelMarket</a>
           <a href="/studio">LevelStudio</a>
-          <a href="/levely">Levely AI</a>
+          <a href="/levely">Levely AI</a>\n          <a href="/skills">LevelSkills</a>\n          <a href="/dev">LevelDev</a>\n          <a href="/connect">LevelConnect</a>\n          <a href="/import">LevelImport</a>\n          <a href="/mcp">LevelMCP</a>\n          <a href="/api-docs">LevelAPI</a>
         </nav>
         <a href="/coach" className="nav-cta">Découvrir</a>
       </header>
