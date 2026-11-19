@@ -101,8 +101,10 @@ create policy "profiles_update_own" on public.profiles
 drop policy if exists "workspaces_read_member" on public.workspaces;
 create policy "workspaces_read_member" on public.workspaces
   for select to authenticated using (
-    exists (select 1 from public.workspace_members wm
-      where wm.workspace_id = id and wm.user_id = (select auth.uid()))
+    owner_id = (select auth.uid()) or exists (
+      select 1 from public.workspace_members wm
+      where wm.workspace_id = id and wm.user_id = (select auth.uid())
+    )
   );
 drop policy if exists "workspaces_create_owner" on public.workspaces;
 create policy "workspaces_create_owner" on public.workspaces
