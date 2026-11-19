@@ -1,12 +1,15 @@
 "use client";
 
-import { FormEvent, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { FormEvent, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { createClient } from "@/src/lib/supabase/client";
 
 export default function LoginPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const [callbackError, setCallbackError] = useState(false);
+  useEffect(() => {
+    setCallbackError(new URLSearchParams(window.location.search).get("error") === "auth_callback");
+  }, []);
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +34,7 @@ export default function LoginPage() {
           },
         });
         if (error) throw error;
-        if (data.session) {
+        if (data.session && data.user) {
           await supabase.from("profiles").upsert({ id: data.user.id, full_name: fullName || null });
           router.push("/dashboard");
           router.refresh();
@@ -62,7 +65,7 @@ export default function LoginPage() {
           <button type="button" className={mode === "login" ? "active" : ""} onClick={() => { setMode("login"); setMessage(""); }}>Connexion</button>
           <button type="button" className={mode === "signup" ? "active" : ""} onClick={() => { setMode("signup"); setMessage(""); }}>Créer un compte</button>
         </div>
-        {searchParams.get("error") === "auth_callback" && <p className="auth-message error">Le lien de confirmation n'a pas pu être validé. Réessaie.</p>}
+        {callbackError && <p className="auth-message error">Le lien de confirmation n'a pas pu être validé. Réessaie.</p>}
         <form onSubmit={handleSubmit}>
           {mode === "signup" && <label>Nom affiché<input value={fullName} onChange={e => setFullName(e.target.value)} autoComplete="name" /></label>}
           <label>Adresse e-mail<input type="email" value={email} onChange={e => setEmail(e.target.value)} required autoComplete="email" /></label>
