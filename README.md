@@ -1,90 +1,93 @@
 # LevelCode
 
-LevelCode est l’écosystème technologique qui permet de personnaliser, organiser et optimiser l’utilisation des intelligences artificielles et des outils numériques.
+**Your AI. Your Knowledge. Your Level.**
 
-Le principe fondamental est :
+LevelCode est un écosystème indépendant consacré à la personnalisation, à l’organisation et à l’évolution de l’utilisation des intelligences artificielles.
 
-« LevelCoach recommande. L’utilisateur décide. LevelCode exécute. »
+Le produit rassemble des modules complémentaires pour organiser les connaissances, préparer des assistants, gérer des compétences et connecter des outils compatibles.
 
-Ce dépôt représente la source officielle de LevelCode. Il est structuré pour servir de base de travail maintenable, documentée et évolutive, sans répliquer le site de démonstration public.
+> **LevelCoach recommande. L’utilisateur décide. LevelCode exécute.**
 
-Le site de référence de la vitrine publique est :
+## Références produit
 
-https://levelcode-waitlist.vercel.app
+- Site public de présentation et de liste d’attente : https://levelcode-waitlist.vercel.app
+- Dépôt source officiel : https://github.com/spidnes-wrl/levelcode
 
-Il reste un document de référence visuelle, et non la source technique du produit.
+Le site public définit la vision, les modules, les parcours et les principes de LevelCode. Le dépôt contient l’implémentation applicative et sa documentation technique.
 
-## Objectif du dépôt
+## Modules
 
-- Créer une base technique claire et professionnelle.
-- Préserver la direction artistique déjà existante.
-- Organiser les modules autour d’un vrai produit.
-- Documenter les états réels des fonctionnalités.
-- Préparer les intégrations AI et les modules de l’écosystème sans faux positifs.
+Les modules de l’écosystème sont documentés dans [docs/modules.md](docs/modules.md).
 
-## Architecture retenue
+- LevelMemory — connaissances et contexte.
+- LevelCoach — profil et recommandations.
+- LevelVerify — contrôle de cohérence.
+- LevelSkills — compétences réutilisables.
+- LevelMarket — découverte et sélection de Skills.
+- LevelDev — environnement créateurs.
+- LevelConnect — intégrations externes.
+- LevelImport — import de connaissances.
+- LevelMCP — outils et serveurs MCP.
+- LevelAPI — interfaces et accès techniques.
+- LevelStudio — création et prévisualisation.
+- Levely AI — assistante centrale multi-fournisseurs.
 
-- `app/` : interface web principale.
-- `docs/` : documentation technique et fonctionnelle.
-- `public/` : fichiers statiques.
-- `src/` : logique applicative, domaines et services si nécessaire.
+## État des prototypes actuels
 
-## Modules planifiés
+- **Accueil** : présentation de l’écosystème et navigation.
+- **LevelCoach** : questionnaire en cinq étapes, synthèse personnalisée et export texte local.
+- **LevelMarket** : catalogue local avec recherche, filtres et sélection de Skills pendant la session.
+- **LevelStudio** : éditeur local de blocs, prévisualisation et export JSON.
+- **Levely AI** : page de présentation de l’architecture cible ; aucun fournisseur n’est connecté pour le moment.
 
-- LevelMemory
-- LevelCoach
-- LevelVerify
-- LevelSkills
-- LevelMarket
-- LevelDev
-- LevelConnect
-- LevelImport
-- LevelMCP
-- LevelAPI
-- LevelStudio
-- Levely AI
+Les prototypes LevelCoach, LevelMarket et LevelStudio ne sauvegardent pas encore les données dans un compte ou une base distante. Aucune action n’est appliquée à un assistant externe.
 
-## Démarrage rapide
+## Stack technique
+
+- Next.js 14
+- React 18
+- TypeScript
+- CSS natif
+- Déploiement prévu sur Vercel
+
+## Démarrage local
+
+Prérequis : Node.js 18+ et npm.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Ensuite ouvrir :
+Ouvrir ensuite http://localhost:3000.
 
-http://localhost:3000
+Vérifier la compilation :
 
-## Variables d’environnement
+```bash
+npm run build
+```
 
-Copier le fichier `.env.example` vers `.env.local` et renseigner les valeurs réelles.
+## Configuration
+
+Copier `.env.example` vers `.env.local` et renseigner uniquement les variables nécessaires. Ne jamais committer de clé API ou de secret.
 
 ## Documentation
 
-- `docs/architecture.md`
-- `docs/modules.md`
-- `docs/development.md`
-- `docs/testing.md`
-- `docs/deployment-vercel.md`
+- [Architecture](docs/architecture.md)
+- [Modules et statuts](docs/modules.md)
+- [Développement](docs/development.md)
+- [Tests](docs/testing.md)
+- [Déploiement Vercel](docs/deployment-vercel.md)
+- [Consignes agents](AGENTS.md)
 
-## Statut fonctionnel
+## Principes de qualité et de confiance
 
-Ce dépôt est un socle officiel de projet. Les fonctionnalités de l’écosystème sont documentées avec leur statut réel :
-
-- Opérationnel
-- En développement
-- Expérimental
-- Planifié
-
-Aucune clé secrète ne doit être ajoutée dans le dépôt Git.
-
-## Règles de qualité
-
-- Pas de faux résultats de tests.
-- Pas d’intégrations API inventées.
-- Pas de connexion AI simulée.
-- Documentation claire et actualisée.
-- Respect de la charte visuelle de LevelCode.
+- Ne pas annoncer comme opérationnelle une intégration non testée.
+- Demander un consentement explicite avant toute modification sensible.
+- Garder les données privées séparées par utilisateur lorsque le backend sera activé.
+- Protéger les secrets côté serveur.
+- Documenter les limites et les statuts réels.
+- Préserver le contrôle de l’utilisateur sur ses données et ses décisions.
 
 ## Licence
 
