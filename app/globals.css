@@ -465,3 +465,14 @@ button {
 .footer-links { display:flex; gap:18px; }
 @media(max-width:900px) { .hero { grid-template-columns:1fr; padding-top:45px; } .hero-visual { min-height:390px; } .section-heading { align-items:start; flex-direction:column; } .ecosystem-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .coach-feature { grid-template-columns:1fr; padding:36px; } }
 @media(max-width:640px) { .topbar { flex-wrap:wrap; } .topnav { order:3; width:100%; justify-content:flex-start; overflow-x:auto; padding:5px 0; } .nav-cta { margin-left:auto; } .hero h1 { font-size:clamp(3.2rem,16vw,5rem); } .hero-visual { min-height:330px; } .orbit-one { width:300px; height:220px; } .orbit-two { width:340px; height:260px; } .float-memory { left:0; } .float-coach { right:0; } .principle-strip { align-items:flex-start; flex-direction:column; } .ecosystem-section { padding:70px 0; } .ecosystem-grid { grid-template-columns:1fr; } .coach-feature { padding:28px 20px; } .footer { align-items:flex-start; flex-direction:column; } .footer-links { flex-wrap:wrap; } }
+
+
+/* LevelCoach interactive states */
+.answer-option.selected { border-color:#7d6fe6; background:rgba(125,111,230,.12); font-weight:800; }
+.text-button { margin-top:18px; border:0; background:transparent; color:#6554c0; font-weight:800; cursor:pointer; padding:8px 0; }
+.coach-answer-summary { list-style:none; margin:22px 0!important; padding:0!important; display:grid; gap:12px; }
+.coach-answer-summary li { display:grid; gap:4px; padding:12px 14px; border-radius:12px; background:rgba(18,18,20,.04); line-height:1.45; }
+.coach-answer-summary li strong { font-size:.82rem; }
+.coach-answer-summary li span { color:#6554c0; font-size:.9rem; }
+.question-card .cta-row { margin-top:22px; }
+.question-card .secondary-btn { cursor:pointer; color:inherit; }
