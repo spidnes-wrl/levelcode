@@ -1,117 +1,102 @@
+const modules = [
+  { name: "LevelMemory", description: "Organisez vos connaissances, préférences et informations utiles.", status: "En développement", group: "Connaissance" },
+  { name: "LevelCoach", description: "Analysez vos habitudes et obtenez des recommandations que vous restez libre d’accepter.", status: "Fondations disponibles", group: "Accompagnement" },
+  { name: "LevelVerify", description: "Examinez la cohérence et la fiabilité des informations.", status: "Planifié", group: "Fiabilité" },
+  { name: "LevelSkills", description: "Créez, organisez et activez des compétences réutilisables.", status: "Planifié", group: "Compétences" },
+  { name: "LevelMarket", description: "Découvrez des Skills et ressources créés pour enrichir vos usages.", status: "Prototype", group: "Marketplace" },
+  { name: "LevelDev", description: "Un espace destiné aux développeurs et créateurs de modules.", status: "Planifié", group: "Création" },
+  { name: "LevelConnect", description: "Reliez vos outils et fournisseurs compatibles, avec des permissions explicites.", status: "Planifié", group: "Intégrations" },
+  { name: "LevelImport", description: "Importez vos connaissances et configurations compatibles.", status: "Planifié", group: "Connaissance" },
+  { name: "LevelMCP", description: "Préparez la gestion des outils et serveurs compatibles MCP.", status: "Planifié", group: "Intégrations" },
+  { name: "LevelAPI", description: "Organisez les accès techniques et les interfaces de programmation.", status: "Planifié", group: "Développeurs" },
+  { name: "LevelStudio", description: "Imaginez et structurez vos espaces, pages et expériences numériques.", status: "Prototype", group: "Création" },
+  { name: "Levely AI", description: "L’assistante centrale conçue pour coordonner les capacités de l’écosystème.", status: "Expérimental", group: "Intelligence" },
+];
+
+const statusClass = (status: string) =>
+  status === "Fondations disponibles" ? "status-ready" : status === "Expérimental" ? "status-experimental" : "status-planned";
+
 export default function Home() {
   return (
     <main className="page-shell page-theme-light">
       <header className="topbar">
-        <div className="brand-wrap">
-          <div className="brand-mark" aria-hidden="true"><span className="check" /></div>
+        <a href="/" className="brand-wrap" aria-label="LevelCode, accueil">
+          <span className="brand-mark" aria-hidden="true"><span className="check" /></span>
           <span className="brand-text">LevelCode</span>
-        </div>
-
+        </a>
         <nav className="topnav" aria-label="Navigation principale">
+          <a href="#ecosystem">Écosystème</a>
           <a href="/coach">LevelCoach</a>
-          <a href="/studio">LevelStudio</a>
           <a href="/market">LevelMarket</a>
+          <a href="/studio">LevelStudio</a>
           <a href="/levely">Levely AI</a>
         </nav>
+        <a href="/coach" className="nav-cta">Découvrir</a>
       </header>
 
       <section className="hero">
         <div className="hero-copy">
-          <p className="eyebrow">CONTEXTE ET SKILLS POUR L’IA</p>
-          <h1>Donne à ton IA le contexte qui lui manque.</h1>
-          <p className="intro">
-            LevelCode rassemble les connaissances, le contexte et les compétences utiles pour structurer
-            un usage plus clair et plus efficace des intelligences artificielles.
-          </p>
+          <p className="eyebrow">YOUR AI. YOUR KNOWLEDGE. YOUR LEVEL.</p>
+          <h1>Votre IA.<br /><span>Vos connaissances.</span><br />Votre niveau.</h1>
+          <p className="intro">LevelCode est un écosystème indépendant qui organise vos connaissances, personnalise vos assistants et vous aide à mieux maîtriser vos outils d’intelligence artificielle.</p>
           <div className="cta-row">
-            <a href="/coach" className="primary-btn">Découvrir LevelCoach</a>
-            <a href="/market" className="secondary-btn">Découvrir LevelSkills</a>
+            <a href="/coach" className="primary-btn">Explorer LevelCoach <span aria-hidden="true">↗</span></a>
+            <a href="#ecosystem" className="secondary-btn">Voir l’écosystème</a>
           </div>
+          <p className="hero-note"><span className="status-dot" /> Projet en développement — découvrez les modules et leur état réel.</p>
         </div>
-
-        <div className="hero-card" aria-label="Exemple de module LevelCode">
-          <div className="stack stack-yellow">Contexte</div>
-          <div className="stack stack-violet">Skills</div>
-          <div className="stack stack-black">
-            <span className="mini-check" aria-hidden="true" />
-            Astra
+        <div className="hero-visual" aria-label="Les trois piliers de LevelCode">
+          <div className="orbit orbit-one" />
+          <div className="orbit orbit-two" />
+          <div className="core-card">
+            <span className="core-kicker">LEVELCODE ECOSYSTEM</span>
+            <strong>Your AI.<br />Your Knowledge.<br /><em>Your Level.</em></strong>
+            <div className="core-footer"><span>12 modules</span><span>·</span><span>1 écosystème</span></div>
           </div>
+          <div className="float-card float-memory"><span className="float-icon">◈</span><span><b>Knowledge</b><small>LevelMemory</small></span></div>
+          <div className="float-card float-coach"><span className="float-icon">✳</span><span><b>Guidance</b><small>LevelCoach</small></span></div>
+          <div className="float-card float-skills"><span className="float-icon">⌘</span><span><b>Skills</b><small>LevelMarket</small></span></div>
         </div>
       </section>
 
-      <section id="modules" className="feature-block">
-        <h2>Trois niveaux, une seule plateforme.</h2>
-        <div className="module-grid">
-          <article className="module-card light">
-            <div className="index">1</div>
-            <h3>Contexte</h3>
-            <p>Rassemble les connaissances et les informations utiles pour orienter les décisions de travail.</p>
-            <span className="status-badge">Opérationnel</span>
-          </article>
-
-          <article className="module-card violet">
-            <div className="index">2</div>
-            <h3>Skills</h3>
-            <p>Définit les compétences réutilisables pour transformer les bonnes pratiques en workflows.</p>
-            <span className="status-badge">En développement</span>
-          </article>
-
-          <article className="module-card dark">
-            <div className="index">3</div>
-            <h3>Astra</h3>
-            <p>Assiste l’utilisateur dans l’organisation du contexte et de l’exécution des tâches.</p>
-            <span className="status-badge">Expérimental</span>
-          </article>
-        </div>
+      <section className="principle-strip">
+        <span>NOTRE PRINCIPE</span>
+        <p><b>LevelCoach recommande.</b><i>L’utilisateur décide.</i><b>LevelCode exécute.</b></p>
       </section>
 
-      <section id="skills" className="showcase">
-        <div className="showcase-copy">
-          <p className="eyebrow dark">LEVELSKILLS</p>
-          <h3>La <span>marketplace</span> des skills pour ton IA.</h3>
-          <p>Parcours les skills disponibles et ajoute-les à ton espace en un clic.</p>
-          <a href="/market" className="primary-btn dark">Explorer LevelSkills</a>
+      <section id="ecosystem" className="ecosystem-section">
+        <div className="section-heading">
+          <div><p className="eyebrow">UN ÉCOSYSTÈME MODULAIRE</p><h2>Tout commence par<br /><span>la connaissance.</span></h2></div>
+          <p className="section-intro">Chaque module a un rôle précis. Ils sont conçus pour fonctionner ensemble, sans imposer un fournisseur d’IA unique ni retirer le contrôle à l’utilisateur.</p>
         </div>
-
-        <div className="skill-list" aria-label="Liste des skills">
-          {Array.from({ length: 3 }).map((_, index) => (
-            <div key={index} className="skill-item">
-              <span>[NOM DU SKILL]</span>
-              <span className="skill-meta">[Description courte]</span>
-              <button type="button" className="skill-btn">Ajouter</button>
-            </div>
+        <div className="ecosystem-grid">
+          {modules.map((module, index) => (
+            <article className="ecosystem-card" key={module.name}>
+              <div className="ecosystem-card-top"><span className="module-number">{String(index + 1).padStart(2, "0")}</span><span className={`module-status ${statusClass(module.status)}`}>{module.status}</span></div>
+              <p className="module-group">{module.group}</p>
+              <h3>{module.name}</h3>
+              <p>{module.description}</p>
+            </article>
           ))}
         </div>
       </section>
 
-      <section id="ecosystem" className="ecosystem-wrap">
-        <div className="ecosystem-header">
-          <p className="eyebrow dark">ÉCOSYSTÈME</p>
-          <h2>Architecture des modules LevelCode</h2>
-        </div>
-        <div className="ecosystem-grid">
-          <div className="ecosystem-item"><strong>LevelMemory</strong><span>En conception</span></div>
-          <div className="ecosystem-item"><strong>LevelCoach</strong><span>Fondations</span></div>
-          <div className="ecosystem-item"><strong>LevelVerify</strong><span>Planifié</span></div>
-          <div className="ecosystem-item"><strong>LevelSkills</strong><span>Planifié</span></div>
-          <div className="ecosystem-item"><strong>LevelStudio</strong><span>Préparation</span></div>
-          <div className="ecosystem-item"><strong>Levely AI</strong><span>Abstraction</span></div>
-        </div>
+      <section className="coach-feature">
+        <div><p className="eyebrow">COMMENCER ICI</p><h2>Découvrez votre façon<br />de travailler avec l’IA.</h2><p>LevelCoach vous guide à travers quelques questions et prépare un premier profil de travail. Vous gardez le choix sur chaque recommandation.</p><a href="/coach" className="primary-btn">Lancer LevelCoach <span aria-hidden="true">↗</span></a></div>
+        <div className="coach-preview"><span className="preview-label">LEVELCOACH / PROFIL</span><div className="preview-question">Quelle est votre priorité principale ?</div><div className="preview-choice selected">◉ Qualité des résultats <span>✓</span></div><div className="preview-choice">○ Mémoire du contexte</div><div className="preview-choice">○ Créativité et exploration</div><div className="preview-progress"><span /></div><small>Un profil préparé selon vos réponses.</small></div>
       </section>
 
-      <section className="callout">
-        <h2>Prêt à passer au niveau supérieur ?</h2>
-        <p>LevelCode arrive bientôt. Rejoins la liste d’attente pour être prévenu de l’ouverture.</p>
-        <a href="/coach" className="primary-btn">Accéder à LevelCoach</a>
+      <section className="closing-card">
+        <p className="eyebrow">BUILT FOR A SMARTER AI FUTURE</p>
+        <h2>L’intelligence artificielle<br /><span>à votre niveau.</span></h2>
+        <p>Un environnement plus personnel, plus clair et toujours sous votre contrôle.</p>
+        <a href="/coach" className="primary-btn">Découvrir LevelCode <span aria-hidden="true">↗</span></a>
       </section>
 
       <footer className="footer">
-        <span>© 2026 NATE — LevelCode</span>
-        <div className="footer-links">
-          <a href="/coach">LevelCoach</a>
-          <a href="/studio">LevelStudio</a>
-          <a href="/market">LevelSkills</a>
-        </div>
+        <a href="/" className="brand-wrap"><span className="brand-mark" aria-hidden="true"><span className="check" /></span><span className="brand-text">LevelCode</span></a>
+        <span>© 2026 NATE — LevelCode. Projet indépendant.</span>
+        <div className="footer-links"><a href="/coach">LevelCoach</a><a href="/market">LevelMarket</a><a href="/studio">LevelStudio</a><a href="/levely">Levely AI</a></div>
       </footer>
     </main>
   );
